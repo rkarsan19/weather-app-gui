@@ -4,6 +4,8 @@
 import React from "react";
 
 function WeatherCard({ data }) {
+    if (!data) return <p>No data yet</p>;
+
     return (
         // below is the logic of what will be outputted for every input we receive from the API.
         // we output:
@@ -52,4 +54,3 @@ function WeatherCard({ data }) {
 }
 
 export default WeatherCard;
-
