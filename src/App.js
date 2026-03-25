@@ -1,15 +1,21 @@
 import "./weather_styles/style.css";
-import React, { useState, useEffect } from "react";
-import { getWeatherByCity, getForecastByCity } from "./api/weatherAPI";
+import react from "react";
+import {
+    getWeatherByCity,
+    getForecastByCity,
+    getWeatherAndForecastByLocation,
+} from "./api/weatherAPI";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import Forecast from "./components/Forecast";
+import Extension from "./components/Extension";
 
 const App = () => {
-    const [weather, setWeather] = useState(null);
-    const [error, setError] = useState("");
-    const [forecast, setForecast] = useState(null);
-    const [selectedTime, setSelectedTime] = useState("12:00:00"); // default to midday forecast
+    const [weather, setWeather] = react.useState(null);
+    const [error, setError] = react.useState("");
+    const [forecast, setForecast] = react.useState(null);
+    const [selectedTime, setSelectedTime] = react.useState("12:00:00"); // default to midday forecast
+    const [background, setBackground] = react.useState("");
 
     const handleSearch = async (city) => {
         try {
@@ -27,6 +33,23 @@ const App = () => {
         }
     };
 
+    const findByLocation = async () => {
+        try {
+            setError("");
+
+            const { weatherdata, forecastdata } =
+                await getWeatherAndForecastByLocation();
+
+            setWeather(weatherdata);
+            setForecast(forecastdata);
+            console.log(forecastdata);
+        } catch (err) {
+            setWeather(null);
+            setForecast(null);
+            setError(err.message);
+        }
+    };
+
     const filteredForecast = forecast?.list.filter((item) =>
         item.dt_txt.includes(selectedTime),
     );
@@ -34,7 +57,7 @@ const App = () => {
     const getDayWithOrdinal = (day) => {
         const j = day % 10,
             k = day % 100;
-        if (j === 1 && k !== 11) return `${day}st`;
+        if (j === 1 && k !== 11) return ``;
         if (j === 2 && k !== 12) return `${day}nd`;
         if (j === 3 && k !== 13) return `${day}rd`;
         return `${day}th`;
@@ -49,8 +72,12 @@ const App = () => {
     };
 
     return (
-        <div className="App">
+        <div className={`App ${background}`}>
             <h1>Weather App</h1>
+            <Extension
+                toggleOn={findByLocation}
+                handleBackground={setBackground}
+            />
             <SearchBar onSearch={handleSearch} />
             <WeatherCard data={weather} />
             <Forecast
