@@ -1,10 +1,13 @@
 import './weather_styles/style.css';
-import React, { useState, useEffect } from 'react';
-import { getWeatherByCity, getForecastByCity } from './api/weatherAPI'; 
+import React, { useState } from 'react';
+import {
+    getWeatherByCity,
+    getForecastByCity,
+    getWeatherForCurrentLocation,
+} from './api/weatherAPI';
 import SearchBar from './components/SearchBar.js';
 import WeatherCard from './components/WeatherCard.js';
-import Forecast from './components/Forecast.js'; 
-
+//import Forecast from './components/Forecast.js';
 
 
 const App = () => {
@@ -13,6 +16,7 @@ const App = () => {
   const [forecast, setForecast] = useState(null);
   const [selectedTime, setSelectedTime] = useState("12:00:00");// default to midday forecast
 
+  //Search for weather by city name
   const handleSearch = async (city) => {
     try {
       setError('');
@@ -29,7 +33,22 @@ const App = () => {
       setError(err.message);
     }
   };
+
+  // // Search by GPS location
+  //   const findByLocation = async () => {
+  //       try {
+  //           setError('');
+  //           const { weather, forecast } = await getWeatherForCurrentLocation();
+  //           setWeather(weather);
+  //           setForecast(forecast);
+  //       } catch (err) {
+  //           setWeather(null);
+  //           setForecast(null);
+  //           setError(err.message);
+  //       }
+  //   };
    
+  //Search for weather by geolocation
   const filteredForecast = forecast?.list.filter(item =>
     item.dt_txt.includes(selectedTime)
   );
@@ -53,15 +72,16 @@ const App = () => {
   
   return (
     <div className="app-container">
-      <h1></h1>
+      <h1>Weather App</h1>
+      
       <SearchBar onSearch={handleSearch} />
       <WeatherCard data={weather} />
+
       {weather && (
         <div className="recommendation">
           {(() => {
             const temp = weather.main.temp;
             const condition = weather.weather[0].main.toLowerCase();
-
             if (temp < 10) {
               return "🥶 Cold weather today — wear a jacket";
             }
