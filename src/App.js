@@ -80,46 +80,13 @@ const App = () => {
             />
             <SearchBar onSearch={handleSearch} />
             <WeatherCard data={weather} />
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <Forecast
                 filteredForecast={filteredForecast}
                 formatForecastDate={formatForecastDate}
+                selectedTime={selectedTime}
+                onTimeChange={setSelectedTime}
             />
-            {error && <p style={{ color: "red" }}>{error}</p>}
-
-            {forecast && (
-                <div>
-                    <h3>5-Day Forecast</h3>
-
-                    <label>Select time: </label>
-                    <select
-                        onChange={(e) => setSelectedTime(e.target.value)}
-                        value={selectedTime}
-                    >
-                        <option value="09:00:00">Morning (09:00)</option>
-                        <option value="12:00:00">Afternoon (12:00)</option>
-                        <option value="15:00:00">Late Afternoon (15:00)</option>
-                        <option value="18:00:00">Evening (18:00)</option>
-                    </select>
-
-                    <div className="forecast-grid">
-                        {filteredForecast.map((item, index) => (
-                            <div className="forecast-card" key={index}>
-                                <div className="forecast-date">
-                                    {formatForecastDate(
-                                        item.dt_txt.split(" ")[0],
-                                    )}
-                                </div>
-                                <div className="forecast-temp">
-                                    {Math.round(item.main.temp)}°C
-                                </div>
-                                <div className="forecast-desc">
-                                    {item.weather[0].description}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
