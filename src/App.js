@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import {
     getWeatherByCity,
     getForecastByCity,
-    getWeatherAndForecastByLocation,
+    getWeatherForCurrentLocation,
 } from './api/weatherAPI';
 import SearchBar from './components/SearchBar.js';
 import WeatherCard from './components/WeatherCard.js';
-import Forecast from './components/Forecast.js';
-import Extension from './components/Extension.js';
+//import Forecast from './components/Forecast.js';
 
 
 const App = () => {
@@ -16,7 +15,6 @@ const App = () => {
   const [error, setError] = useState('');
   const [forecast, setForecast] = useState(null);
   const [selectedTime, setSelectedTime] = useState("12:00:00");// default to midday forecast
-  const [background, setBackground] = useState("");
 
   //Search for weather by city name
   const handleSearch = async (city) => {
@@ -36,19 +34,19 @@ const App = () => {
     }
   };
 
-  // Search by GPS location
-    const findByLocation = async () => {
-        try {
-            setError('');
-            const { weatherdata, forecastdata } = await getWeatherAndForecastByLocation();
-            setWeather(weatherdata);
-            setForecast(forecastdata);
-        } catch (err) {
-            setWeather(null);
-            setForecast(null);
-            setError(err.message);
-        }
-    };
+  // // Search by GPS location
+  //   const findByLocation = async () => {
+  //       try {
+  //           setError('');
+  //           const { weather, forecast } = await getWeatherForCurrentLocation();
+  //           setWeather(weather);
+  //           setForecast(forecast);
+  //       } catch (err) {
+  //           setWeather(null);
+  //           setForecast(null);
+  //           setError(err.message);
+  //       }
+  //   };
    
   //Search for weather by geolocation
   const filteredForecast = forecast?.list.filter(item =>
@@ -73,14 +71,9 @@ const App = () => {
   };
   
   return (
-    <div className={`app-container ${background}`}>
+    <div className="app-container">
       <h1>Weather App</h1>
-
-      <Extension 
-        toggleOn={findByLocation} 
-        handleBackground={setBackground} 
-      />
-
+      
       <SearchBar onSearch={handleSearch} />
       <WeatherCard data={weather} />
 
