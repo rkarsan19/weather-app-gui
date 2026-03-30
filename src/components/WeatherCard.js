@@ -1,56 +1,76 @@
-// WeatherCard.js — shows the weather results for a given city
-// This component has one job:display the weather data it receives as a prop.
+import React from 'react';
+import sunCloud from "../assets/sunCloudWeatherApp.png";
+import rain from "../assets/rainyWeatherApp.png";
+import sunriseImg from '../assets/sunrise.png';
+import sunsetImg from '../assets/sunset.png';
+import humidityIcon from '../assets/humidity.png';
+import windIcon from '../assets/wind.png';
+import rainIcon from '../assets/heavy-rain.png';
+const WeatherCard = ({ data }) => {
+    if (!data) return null;
 
-import React from "react";
+    const iconCode = data.weather[0].icon;
 
-function WeatherCard({ data }) {
-    if (!data) return <p>No data yet</p>;
+    // convert UNIX → readable time
+    const formatTime = (timestamp) => {
+        return new Date(timestamp * 1000).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
 
     return (
-        // below is the logic of what will be outputted for every input we receive from the API.
-        // we output:
-        // temp
-        // pressure
-        // Wind speed
-        // humidity
-        // "feels like" temp
-
-        // Weather card starts from her
         <div className="weather-card">
-            <h2 className="city-name">
-                {data.name}, {data.sys.country}
-            </h2>
 
-            <p className="temperature">{Math.round(data.main.temp)}°C</p>
-            <p className="description">
-                {data.weather[0].description.charAt(0).toUpperCase() +
-                    data.weather[0].description.slice(1)}
-            </p>
+            <h2>{data.name}</h2>
 
-            <div className="weather-details">
-                <div className="detail-item">
-                    <span className="detail-label">Feels like</span>
-                    <span className="detail-value">
-                        {Math.round(data.main.feels_like)}°C
-                    </span>
-                </div>
-                <div className="detail-item">
-                    <span className="detail-label">Humidity</span>
-                    <span className="detail-value">{data.main.humidity}%</span>
-                </div>
-                <div className="detail-item">
-                    <span className="detail-label">Pressure</span>
-                    <span className="detail-value">
-                        {data.main.pressure} hPa
-                    </span>
-                </div>
-                <div className="detail-item">
-                    <span className="detail-label">Wind speed</span>
-                    <span className="detail-value">{data.wind.speed} m/s</span>
-                </div>
+            <img
+                src={`https://openweathermap.org/img/wn/${iconCode}@2x.png`}
+                alt="weather icon"
+                className="weather-icon"
+            />
+
+            <div className="temp-row">
+                
+               <div className="sun-card">
+                    <img src={sunriseImg} alt="sunrise" />
+                    <span>{formatTime(data.sys.sunrise)}</span>
+                    </div>
+
+                    <div className="temp-main">
+                    {Math.round(data.main.temp)}°C
+                    </div>
+
+                    <div className="sun-card">
+                    <img src={sunsetImg} alt="sunset" />
+                    <span>{formatTime(data.sys.sunset)}</span>
+                    </div>
+
             </div>
+
+            <p className="desc">{data.weather[0].description}</p>
+            <div className="extra-info">
+
+                <div className="info-box">
+                    <img src={rainIcon} alt="rain" />
+                    <span>
+                    {data.rain ? `${data.rain["1h"] || 0} mm` : "0 mm"}
+                    </span>
+                </div>
+
+                <div className="info-box">
+                    <img src={humidityIcon} alt="humidity" />
+                    <span>{data.main.humidity}%</span>
+                </div>
+
+                <div className="info-box">
+                    <img src={windIcon} alt="wind" />
+                    <span>{Math.round(data.wind.speed)} m/s</span>
+                </div>
+
+                </div>
         </div>
     );
-}
+};
 
 export default WeatherCard;

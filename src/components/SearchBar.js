@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
-    const [city, setCity] = useState("");
+    const [city, setCity] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -10,16 +10,18 @@ const SearchBar = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="search-bar" onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Enter city"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
-            />
+                onChange={(e) => setCity(e.target.value)}/>
             <button type="submit">Search</button>
         </form>
     );
 };
+
+
+
 
 export default SearchBar;
