@@ -53,6 +53,7 @@ const WeatherCard = ({ weather, forecast }) => {
                     <span>{formatTime(weather.sys.sunset)}</span>
                 </div>
             </div>
+
             <div className="feels-like">
                 feels like {Math.round(weather.main.feels_like)}°C
             </div>
