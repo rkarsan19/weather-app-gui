@@ -330,7 +330,6 @@ body.dark {
     gap: 0.5rem;
 }
 
-/* ── Right: map + forecast takes other 50% ── */
 .forecast-section.forecast-full {
     flex: 0 0 50%;
     display: flex;
@@ -370,6 +369,5 @@ body.dark {
 
 .result-map {
     flex: 1;
-    border: 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
