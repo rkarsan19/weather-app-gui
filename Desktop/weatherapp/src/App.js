@@ -55,7 +55,7 @@ const App = () => {
     <div className="app-container">
       <h1></h1>
       <SearchBar onSearch={handleSearch} />
-      <WeatherCard data={weather} />
+      <WeatherCard data={weather} forecast={forecast} />
       {weather && (
         <div className="recommendation">
           {(() => {

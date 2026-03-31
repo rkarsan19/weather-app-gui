@@ -6,10 +6,16 @@ import sunsetImg from '../assets/sunset.png';
 import humidityIcon from '../assets/humidity.png';
 import windIcon from '../assets/wind.png';
 import rainIcon from '../assets/heavy-rain.png';
-const WeatherCard = ({ data }) => {
+const WeatherCard = ({ data, forecast }) => {
     if (!data) return null;
 
     const iconCode = data.weather[0].icon;
+
+
+    const getNextHours = () => {
+        if (!forecast) return [];
+        return forecast.list.slice(0, 4);
+    };
 
     // convert UNIX → readable time
     const formatTime = (timestamp) => {
@@ -17,6 +23,10 @@ const WeatherCard = ({ data }) => {
             hour: '2-digit',
             minute: '2-digit'
         });
+
+        
+
+    
     };
 
     return (
@@ -48,6 +58,10 @@ const WeatherCard = ({ data }) => {
 
             </div>
 
+            <p className="feels-like">
+            Feels like {Math.round(data.main.feels_like)}°C
+            </p>
+
             <p className="desc">{data.weather[0].description}</p>
             <div className="extra-info">
 
@@ -69,7 +83,27 @@ const WeatherCard = ({ data }) => {
                 </div>
 
                 </div>
+
+           <div className="hourly">
+            {getNextHours().map((item, index) => (
+                <div key={index} className="hour-box">
+                <span>
+                    {new Date(item.dt * 1000).getHours()}:00
+                </span>
+
+                <img
+                    src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+                    alt="icon"
+                />
+
+                <span>{Math.round(item.main.temp)}°C</span>
+                </div>
+            ))}
+            </div> 
         </div>
+
+        
+        
     );
 };
 

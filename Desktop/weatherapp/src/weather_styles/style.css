@@ -260,3 +260,33 @@ body.dark {
   height: 25px;
   margin-bottom: 5px;
 }
+
+.feels-like {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+.hourly {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.hour-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 70px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+}
+
+.hour-box img {
+  width: 35px;
+  height: 35px;
+}
