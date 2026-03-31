@@ -96,7 +96,7 @@ const App = () => {
                 <SearchBar onSearch={handleSearch} />
                 <GPSButton onToggleOn={findbylocation} />
             </div>
-            <WeatherCard data={weather} />
+            <WeatherCard weather={weather} forecast={forecast} />
 
             {weather && (
                 <div className="recommendation">
