@@ -371,3 +371,51 @@ body.dark {
     flex: 1;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
+
+@media (max-width: 900px) {
+    .result-layout {
+        flex-direction: column;
+    }
+
+    .reuslt-weather {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .forecast-section.forecast-full {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .result-map {
+        width: 100%;
+        height: 300px;
+        flex: 0 0 300px;
+    }
+
+    .result-map iframe {
+        height: 300px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .search-bar {
+        width: 80%;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .forecast-card {
+        width: auto;
+    }
+
+    .default-card-wrapper {
+        min-width: 100%;
+    }
+}
