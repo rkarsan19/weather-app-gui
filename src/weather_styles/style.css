@@ -33,7 +33,7 @@ body {
     gap: 10px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 0.5rem;
     flex-direction: row-reverse;
 }
 
@@ -79,6 +79,7 @@ body {
     background: rgba(255, 255, 255, 0.2);
     padding: 25px;
     border-radius: 20px;
+    margin-top: 20px;
     text-align: center;
     backdrop-filter: blur(10px);
 }
@@ -181,7 +182,7 @@ body.dark {
 }
 
 .forecast-grid {
-    margin-top: 20px;
+    margin-top: 0.5rem;
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -214,11 +215,6 @@ body.dark {
 .forecast-icon {
     width: 40px;
     height: 40px;
-}
-
-.weather-card {
-    margin-top: 20px;
-    text-align: center;
 }
 
 .weather-icon {
@@ -325,4 +321,55 @@ body.dark {
 .hour-box img {
     width: 35px;
     height: 35px;
+}
+
+/*Additional Stuff*/
+.result-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+/* ── Right: map + forecast takes other 50% ── */
+.forecast-section.forecast-full {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 0;
+}
+
+.reuslt-weather {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.default-cards-grid {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.default-card-wrapper {
+    flex: 1;
+    min-width: 350px;
+    max-width: 480px;
+}
+
+.default-card-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.default-card-wrapper:active {
+    transform: scale(0.98);
+}
+
+.result-map {
+    flex: 1;
+    border: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
