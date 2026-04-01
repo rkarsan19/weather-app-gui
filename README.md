@@ -1,72 +1,81 @@
-# Getting Started with Create React App
+# Group 17 — Commuter Weather App
+ECS522U GUI Coursework 2025/26
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A weather app built for daily commuters — students and working professionals who need quick, practical weather information before and during their journey.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## What the app does
 
-### `npm start`
+- Search any city to get current weather conditions
+- Displays temperature, feels like, humidity, wind speed, and sunrise/sunset times
+- Smart commuter tip that gives practical advice based on current conditions (e.g. "Heavy rain — bring an umbrella, cycling not recommended today")
+- 5-day forecast with a time-of-day selector so you can check morning and evening conditions separately
+- Dark mode toggle
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to run it
 
-### `npm test`
+Make sure you have **Node.js** installed. If not, download it from https://nodejs.org (use the LTS version).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**1. Clone the repository**
+```
+git clone https://github.com/your-repo-link-here
+cd weather-app-gui-main
+```
 
-### `npm run build`
+**2. Install dependencies**
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**3. Start the app**
+```
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app will open automatically at http://localhost:3000 in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+All dependencies are listed in `package.json` and installed via `npm install`. The main ones are:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React 19
+- Axios (for API requests)
+- OpenWeatherMap API (live weather data)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Key
 
-## Learn More
+The app uses the OpenWeatherMap API. The API key is already included in `src/api/weatherAPI.js`. No extra setup needed.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+├── api/
+│   └── weatherAPI.js        # API calls to OpenWeatherMap
+├── assets/                  # Icons and images
+├── components/
+│   ├── SearchBar.js         # City search input
+│   ├── WeatherCard.js       # Current weather display
+│   └── Forecast.js          # Forecast component
+├── weather_styles/
+│   └── style.css            # Main stylesheet
+└── App.js                   # Root component, main logic
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# weather-app-gui
+## Group 17 Members
+- Boluwatife Abiodun Temitope Akinmade
+- Ishan Singh Jhaj
+- Reece Karsan
+- Aman Husain Nagarwala
+- Hussein Omar
