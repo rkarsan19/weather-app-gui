@@ -1,9 +1,9 @@
-// Forecast  displays the 5-day forecast cards
-// Receives filteredForecast  and formatForecastDate as props from App.js
+// Forecast displays the 5-day forecast cards
+// Receives filteredForecast, formatForecastDate and isCelsius as props from App.js
 
 import React from "react";
 
-function Forecast({ filteredForecast, formatForecastDate }) {
+function Forecast({ filteredForecast, formatForecastDate, isCelsius }) {
     if (!filteredForecast || filteredForecast.length === 0) {
         return <p>No forecast data available.</p>;
     }
@@ -16,28 +16,28 @@ function Forecast({ filteredForecast, formatForecastDate }) {
 
                 return (
                     <div className="forecast-card" key={index}>
-                        {/* date */}
+                        {/* Date e.g. "Mon 3rd 2025" */}
                         <div className="forecast-date">
                             {formatForecastDate(item.dt_txt.split(" ")[0])}
                         </div>
 
-                        {/* the weather icon */}
+                        {/* Weather icon from OpenWeatherMap */}
                         <img
                             src={iconUrl}
                             alt={item.weather[0].description}
                             className="forecast-icon"
                         />
 
-                        {/* temp */}
+                        {/* Temperature — switches between °C and °F based on the toggle */}
                         <div className="forecast-temp">
-                            {Math.round(item.main.temp)}°C
+                            {isCelsius
+                                ? `${Math.round(item.main.temp)}°C`
+                                : `${Math.round((item.main.temp * 9) / 5 + 32)}°F`}
                         </div>
 
-                        {/* desc for whether */}
+                        {/* Short weather description e.g. "Light rain" */}
                         <div className="forecast-desc">
-                            {item.weather[0].description
-                                .charAt(0)
-                                .toUpperCase() +
+                            {item.weather[0].description.charAt(0).toUpperCase() +
                                 item.weather[0].description.slice(1)}
                         </div>
                     </div>
@@ -48,5 +48,3 @@ function Forecast({ filteredForecast, formatForecastDate }) {
 }
 
 export default Forecast;
-Forecast;
-
